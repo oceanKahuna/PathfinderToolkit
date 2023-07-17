@@ -8,5 +8,9 @@ def index(request):
 
 def item_form_view(request):
     form = itemInputForm()
+    if request.method=='POST':
+        form = itemInputForm(request.POST)
+        if form.is_valid():
+            form.save()
     context = {'form':form}
     return render(request, 'item.html',context )

@@ -16,7 +16,7 @@ class Item(models.Model):
     name = models.CharField(max_length=50,unique=True)
     weight_lbs = models.DecimalField(max_digits=6,decimal_places=2)
     value_in_gold = models.DecimalField(max_digits=20,decimal_places=2)
-    source = models.CharField(max_length=20, null=True, blank=True)
+    source = models.CharField(max_length=200, null=True, blank=True)
     category_id = models.ForeignKey(ItemCategory, on_delete = models.PROTECT, default=None, related_name = 'item_category')
 
 class Weapon(Item):
@@ -44,5 +44,5 @@ class Armor(Item):
 
 class Inventory(models.Model):
     character = models.ForeignKey(Character,on_delete=models.CASCADE, related_name = 'inventory')
-    item = models.ForeignKey(Item, on_delete=models.PROTECT, related_name='item')
+    item_id = models.ForeignKey(Item, on_delete=models.PROTECT, related_name='item')
     slots = models.IntegerField()
