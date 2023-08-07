@@ -1,0 +1,8 @@
+{% if items %}
+Name : Gold Value 
+{% for item in items %}
+<p>{{item.name}} : {{item.value_in_gold}}</p>
+{% endfor %}
+{% else %}
+no items to display! 
+{% endif %}

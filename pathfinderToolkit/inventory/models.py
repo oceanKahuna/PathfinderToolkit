@@ -7,11 +7,13 @@ from django.core.validators import MaxValueValidator
 class Character(models.Model):
     first_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50, null=True, blank=True)
-    last_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50, null=True)
     characterLevel = models.IntegerField(validators=[MaxValueValidator(40)])
     experience = models.DecimalField(max_digits=7,decimal_places=2)
     def __str__(self): 
         return f"{self.first_name} {self.last_name}"
+    def characters(self):
+        return Character.objects.all()
 
 class ItemCategory(models.Model):
     item_category_name = models.CharField(max_length=100,unique=True)
@@ -24,6 +26,8 @@ class Item(models.Model):
     category_id = models.ForeignKey(ItemCategory, on_delete = models.PROTECT, default=None, related_name = 'item_category')
     def __str__(self): 
         return f"{self.name}" 
+    def items(self):
+        return Item.objects.all()
 
 class Weapon(Item):
     damage = models.IntegerField()
