@@ -15,15 +15,15 @@ class Character(models.Model):
     def characters(self):
         return Character.objects.all()
 
-class ItemCategory(models.Model):
-    item_category_name = models.CharField(max_length=100,unique=True)
-
 class Item(models.Model):
     name = models.CharField(max_length=50,unique=True)
     weight_lbs = models.DecimalField(max_digits=6,decimal_places=2)
     value_in_gold = models.DecimalField(max_digits=20,decimal_places=2)
     source = models.CharField(max_length=200, null=True, blank=True)
-    category_id = models.ForeignKey(ItemCategory, on_delete = models.PROTECT, default=None, related_name = 'item_category')
+
+    item_category_choices = [('weapon',_('Weapon')),
+                            ('armor',_('Armor')),]
+    item_category = models.CharField(choices = item_category_choices, max_length = 50,null=True)
     def __str__(self): 
         return f"{self.name}" 
     def items(self):

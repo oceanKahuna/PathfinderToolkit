@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
-admin.site.register(ItemCategory)
 admin.site.register(Weapon)
 admin.site.register(Armor)
 admin.site.register(Character)

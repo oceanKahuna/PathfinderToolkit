@@ -4,8 +4,8 @@ from inventory.forms import itemInputForm
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 from .models import Item
-
 # Create your views here.
+
 def index(request): 
     if request.user.is_anonymous():
         raise PermissionDenied()
